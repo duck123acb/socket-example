@@ -6,7 +6,7 @@ const port = 3000;
 
 // create interface
 app.get('/', (req, res) => {
-	res.sendFile("./index.html");
+	res.sendFile(__dirname + "/index.html");
 });
 
 // get input from interface
