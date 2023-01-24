@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/duck123acb/socket-example/issues"
   },
-  "homepage": "https://github.com/duck123acb/socket-example#readme"
+  "homepage": "https://github.com/duck123acb/socket-example#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
