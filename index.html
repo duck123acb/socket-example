@@ -9,11 +9,21 @@
 </head>
 <body>
     <ul id="messages"></ul>
-    <input type="text">
-    
+    <input type="text" id="input">
+
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        var socket = io();
+        const socket = io();
+        const input = document.getElementById("input");
+
+        input.addEventListener("keypress", e => {
+            if (e.key === "Enter") {
+                console.log(socket.id);
+		socket.emit("chat name", socket.id);
+                socket.emit("chat message", input.value);
+                input.value = "";
+            }
+        });
     </script>
 </body>
 </html>
