@@ -7,6 +7,12 @@
 		<title>send messages11!!</title>
 	</head>
 	<body>
+		<div id="name-wrapper">
+			<span>ENTER UR NAME hERe11!!</span>
+                        <input type="text" id="name">
+                </div>
+		<br>
+		<br>
 		<ul id="messages"></ul>
     		<input type="text" id="input">
 
@@ -14,23 +20,34 @@
    		<script>
         		const socket = io();
         		const input = document.getElementById("input");
+			const nameInput = document.getElementById("name");
+			const nameInputParent = document.getElementById("name-wrapper");
 			const messages = document.getElementById("messages");
+			let name = null;
 
         		input.addEventListener("keypress", e => {
             			if (e.key !== "Enter") return;
 
-				socket.emit("chat name", socket.id);
+				if (name !== null) socket.emit("chat name", name);
+				else socket.emit("chat name", socket.id);
                 		socket.emit("chat message", input.value);
                 		input.value = "";
 			});
 
 			socket.on("recive message", function(msg) {
-				console.log(msg)
-				const item = document.createElement('li');
-    				item.textContent = msg;
-    				messages.appendChild(item);
-    				window.scrollTo(0, document.body.scrollHeight);
-			});
+                                console.log(msg)
+                                const item = document.createElement('li');
+                                item.textContent = msg;
+                                messages.appendChild(item);
+                                window.scrollTo(0, document.body.scrollHeight);
+                        });
+
+			nameInput.addEventListener("keypress", e => {
+                                if (e.key !== "Enter") return;
+
+                                name = nameInput.value;
+				nameInputParent.style.display = "none";
+                        });
    		 </script>
 	</body>
 </html>
