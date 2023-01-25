@@ -23,7 +23,7 @@ io.on("connection", socket => { // socket is client
 	});
 
 	socket.on("chat message", msg => {
-		console.log(`${name}: ${msg}`);
+		io.emit("recive message", `${name}: ${msg}`);
 	});
 
 	socket.on('disconnect', () => {
