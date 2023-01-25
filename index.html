@@ -25,6 +25,10 @@
 			const messages = document.getElementById("messages");
 			let name = null;
 
+			setTimeout(() => {
+				socket.emit("user joined", socket.id);
+			}, 1000);
+
         		input.addEventListener("keypress", e => {
             			if (e.key !== "Enter") return;
 
