@@ -15,12 +15,12 @@ app.get('/', (req, res) => {
 });
 
 io.on("connection", socket => {
-	console.log("user connected");
 
 	let name = "chat name";
 	let message = "placeholder";
 
 	socket.on("user joined", msg => {
+		io.emit("user connected");
 		messages.forEach((message) => {
                 	io.to(msg).emit("recive message", message);
         	});
@@ -42,6 +42,6 @@ io.on("connection", socket => {
 });
 
 // get input from interface
-server.listen(3000, () => {
-	console.log('listening on *:3000');
+server.listen(port, () => {
+	console.log(`listening on *:${port}`);
 });
