@@ -9,6 +9,8 @@ const port = 3000;
 
 let messages = [];
 
+app.use(express.static(__dirname));
+
 // create interface
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + "/index.html");
